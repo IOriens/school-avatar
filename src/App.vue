@@ -46,8 +46,8 @@
 
 <script>
 let cvaWidth = 1600;
-// let avatar = null
-// let icon = null
+let avatar = null;
+let icon = null;
 export default {
   name: "app",
   components: {},
@@ -56,19 +56,30 @@ export default {
       selected: false,
       imageUrl: "",
       resultImg: "",
+      iconSrc: "/logos/cqu01.png",
       isMobile: "ontouchstart" in window
     };
   },
   methods: {
-    handleFileChange(file) {
+    async handleFileChange(file) {
       this.selected = true;
-      var reader = new FileReader();
-      reader.readAsDataURL(file.raw); //转化成base64数据类型
-      reader.onload = e => {
-        this.drawToCanvas(e.target.result);
-      };
+      let fileBase64 = await this.loadFile(file.raw);
+      avatar = await this.loadImg(fileBase64);
+      icon = await this.loadImg(this.iconSrc);
+      this.drawToCanvas();
     },
-
+    loadFile(file) {
+      return new Promise((resolve, reject) => {
+        var reader = new FileReader();
+        reader.readAsDataURL(file); //转化成base64数据类型
+        reader.onload = e => {
+          resolve(e.target.result);
+        };
+        reader.onerror = e => {
+          reject(e);
+        };
+      });
+    },
     loadImg(src) {
       return new Promise((resolve, reject) => {
         var img = new Image();
@@ -82,17 +93,21 @@ export default {
         img.src = src;
       });
     },
-    async drawToCanvas(imgData) {
+    async drawToCanvas() {
       var cvs = document.querySelector("#cvs");
       cvs.width = cvaWidth;
       cvs.height = cvaWidth;
       var ctx = cvs.getContext("2d");
-
-      let avatar = await this.loadImg(imgData);
       ctx.drawImage(avatar, 0, 0, cvaWidth, cvaWidth);
 
-      let logo = await this.loadImg("/logos/cqu01.png");
-      ctx.drawImage(logo, cvaWidth * 0.75, cvaWidth * 0.75, 200, 200);
+      let iconWidth = cvaWidth / 4;
+      ctx.drawImage(
+        icon,
+        (cvaWidth * 252) / 400,
+        (cvaWidth * 260) / 400,
+        iconWidth,
+        iconWidth
+      );
 
       this.resultImg = cvs.toDataURL("image/png");
     }
