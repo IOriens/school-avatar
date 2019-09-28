@@ -27,15 +27,27 @@
       <p v-else class="success">{{isMobile? '长按上方图片保存到相册' : '右击上方图片保存到系统'}}</p>
 
       <!-- <el-row> -->
-      <el-upload
-        v-if="selected"
-        :auto-upload="false"
-        action
-        :show-file-list="false"
-        :on-change="handleFileChange"
-      >
-        <el-button>更换图片</el-button>
-      </el-upload>
+      <div class="btn-row">
+        <el-upload
+          v-if="selected"
+          :auto-upload="false"
+          action
+          :show-file-list="false"
+          :on-change="handleFileChange"
+        >
+          <el-button>更换图片</el-button>
+        </el-upload>
+
+        <el-upload
+          v-if="selected"
+          :auto-upload="false"
+          action
+          :show-file-list="false"
+          :on-change="handleIconChange"
+        >
+          <el-button>更换图标</el-button>
+        </el-upload>
+      </div>
 
       <!-- <a href="#" id="downloader" @onclick="saveImg" download="image.png">
         <el-button type="primary">保存图片</el-button>
@@ -68,6 +80,12 @@ export default {
       let fileBase64 = await this.loadFile(file.raw);
       avatar = await this.loadImg(fileBase64);
       icon = await this.loadImg(this.iconSrc);
+      this.drawToCanvas();
+    },
+    async handleIconChange(file) {
+      let fileBase64 = await this.loadFile(file.raw);
+      // avatar = await this.loadImg(fileBase64);
+      icon = await this.loadImg(fileBase64);
       this.drawToCanvas();
     },
     loadFile(file) {
@@ -172,6 +190,13 @@ h1 {
   .footer {
     margin-top: 20px;
     color: #bbb;
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      .el-upload {
+        margin: 10px;
+      }
+    }
     .success {
       color: #000;
     }
