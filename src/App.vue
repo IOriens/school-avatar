@@ -48,12 +48,6 @@
           <el-button>更换图标</el-button>
         </el-upload>
       </div>
-
-      <!-- <a href="#" id="downloader" @onclick="saveImg" download="image.png">
-        <el-button type="primary">保存图片</el-button>
-      </a>-->
-
-      <!-- </el-row> -->
     </div>
   </div>
 </template>
