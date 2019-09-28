@@ -64,7 +64,7 @@ export default {
       selected: false,
       imageUrl: "",
       resultImg: "",
-      iconSrc: "logos/cqu01.png",
+      iconSrc: "logos/logo-2.png",
       isMobile: "ontouchstart" in window
     };
   },
@@ -114,11 +114,11 @@ export default {
       var ctx = cvs.getContext("2d");
       ctx.drawImage(avatar, 0, 0, cvaWidth, cvaWidth);
 
-      let iconWidth = cvaWidth / 4;
+      let iconWidth = (cvaWidth * 128.57) / 400;
       ctx.drawImage(
         icon,
-        (cvaWidth * 245) / 400,
-        (cvaWidth * 262) / 400,
+        (cvaWidth * 226.35) / 400,
+        (cvaWidth * 233.97) / 400,
         iconWidth,
         iconWidth
       );
@@ -173,7 +173,8 @@ h1 {
     width: 300px;
     height: 300px;
     // border: 1px solid #eee;
-    border-radius: 50%;
+    // border-radius: 50%;
+    border-radius: 10px;
     box-shadow: 0px 0px 7px 1px #d0d0d0;
 
     &.loading {
