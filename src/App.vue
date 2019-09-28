@@ -108,6 +108,7 @@ export default {
       });
     },
     async drawToCanvas() {
+      // 以设计稿宽度为 400 计算
       var cvs = document.querySelector("#cvs");
       cvs.width = cvaWidth;
       cvs.height = cvaWidth;
