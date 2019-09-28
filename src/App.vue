@@ -33,9 +33,9 @@
           :auto-upload="false"
           action
           :show-file-list="false"
-          :on-change="handleFileChange"
+          :on-change="handleIconChange"
         >
-          <el-button>更换图片</el-button>
+          <el-button>更换图标</el-button>
         </el-upload>
 
         <el-upload
@@ -43,9 +43,9 @@
           :auto-upload="false"
           action
           :show-file-list="false"
-          :on-change="handleIconChange"
+          :on-change="handleFileChange"
         >
-          <el-button>更换图标</el-button>
+          <el-button type="primary">更换图片</el-button>
         </el-upload>
       </div>
     </div>
