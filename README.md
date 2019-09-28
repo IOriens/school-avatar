@@ -1,4 +1,6 @@
-# logo
+# 校庆头像生成器
+
+访问地址：[https://ioriens.coding.me/school-avatar/](https://ioriens.coding.me/school-avatar/)
 
 ## Project setup
 ```

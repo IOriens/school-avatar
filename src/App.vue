@@ -19,7 +19,7 @@
 
       <canvas v-show="false" id="cvs" class="cvs"></canvas>
 
-      <div class="loading result" v-if="selected && !resultImg" v-loading="true"></div>
+      <span class="loading result" v-if="selected && !resultImg" v-loading="true"></span>
       <img :src="resultImg" v-if="resultImg" class="result" alt />
     </div>
     <div class="footer">
