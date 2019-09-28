@@ -18,6 +18,8 @@
       </el-upload>
 
       <canvas v-show="false" id="cvs" class="cvs"></canvas>
+
+      <div class="loading result" v-if="selected && !resultImg" v-loading="true"></div>
       <img :src="resultImg" v-if="resultImg" class="result" alt />
     </div>
     <div class="footer">
@@ -56,7 +58,7 @@ export default {
       selected: false,
       imageUrl: "",
       resultImg: "",
-      iconSrc: "/logos/cqu01.png",
+      iconSrc: "logos/cqu01.png",
       isMobile: "ontouchstart" in window
     };
   },
@@ -103,8 +105,8 @@ export default {
       let iconWidth = cvaWidth / 4;
       ctx.drawImage(
         icon,
-        (cvaWidth * 252) / 400,
-        (cvaWidth * 260) / 400,
+        (cvaWidth * 245) / 400,
+        (cvaWidth * 262) / 400,
         iconWidth,
         iconWidth
       );
@@ -161,6 +163,10 @@ h1 {
     // border: 1px solid #eee;
     border-radius: 50%;
     box-shadow: 0px 0px 7px 1px #d0d0d0;
+
+    &.loading {
+      box-shadow: none;
+    }
   }
 
   .footer {
